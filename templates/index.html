@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>GPT-3 Text Generation</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <style>
+    #chatbox {
+      height: 300px;
+      overflow-y: scroll;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    .icon-size{
+    width: 24px;
+    height: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-center mb-5">GPT-3 Text Generation</h1>
+
+    <div id="chatbox" class="mb-5">
+      {% for message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+
+    <form action="/" method="post">
+      <div class="form-group row">
+        <div class="col-sm-9">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <img src="/pencil.png" alt="Pencil icon" class="icon-size">
+              </span>
+            </div>
+            <textarea id="input_text" name="input_text" class="form-control" aria-label="Input Text"></textarea>
+          </div>
+
+        </div>
+        <div class="col-sm-3">
+          <button type="submit" class="btn btn-primary" id="submit-button">Generate Text</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+<script>
+  document.getElementById("input_text").addEventListener("keyup", function (event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+        document.getElementById("submit-button").click();
+      }
+    });
+    // Add a loading animation to the submit button when clicked
+    document.getElementById("submit-button").addEventListener("click", function () {
+      document.getElementById("submit-button").innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
+    });
+</script>
+</html>
